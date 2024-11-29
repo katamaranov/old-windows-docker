@@ -1,0 +1,13 @@
+#!/usr/bin/expect -f
+
+spawn telnet 0.0.0.0 4444
+
+expect "{\"QMP\": {\"version\": {\"qemu\": {\"micro\": 2, \"minor\": 0, \"major\": 9}, \"package\": \"\"}, \"capabilities\": \[\"oob\"\]}}}\r"
+
+send "{ \"execute\": \"qmp_capabilities\" }\r"
+
+expect "{\"return\": {}}\r"
+
+send "{ \"execute\": \"send-key\", \"arguments\": { \"keys\": \[ { \"type\": \"qcode\", \"data\": \"kp_enter\" }, { \"type\": \"qcode\", \"data\": \"kp_enter\" }, { \"type\": \"qcode\", \"data\": \"shift\" }, { \"type\": \"qcode\", \"data\": \"c\" }, { \"type\": \"qcode\", \"data\": \"shift\" }, { \"type\": \"qcode\", \"data\": \"semicolon\" }, { \"type\": \"qcode\", \"data\": \"kp_enter\" }, { \"type\": \"qcode\", \"data\": \"c\" }, { \"type\": \"qcode\", \"data\": \"d\" }, { \"type\": \"qcode\", \"data\": \"spc\" },{ \"type\": \"qcode\", \"data\": \"w\" }, { \"type\": \"qcode\", \"data\": \"i\" }, { \"type\": \"qcode\", \"data\": \"n\" }, { \"type\": \"qcode\", \"data\": \"d\" }, { \"type\": \"qcode\", \"data\": \"o\" }, { \"type\": \"qcode\", \"data\": \"w\" }, { \"type\": \"qcode\", \"data\": \"s\" }, { \"type\": \"qcode\", \"data\": \"kp_enter\" },{ \"type\": \"qcode\", \"data\": \"w\" }, { \"type\": \"qcode\", \"data\": \"i\" }, { \"type\": \"qcode\", \"data\": \"n\" }, { \"type\": \"qcode\", \"data\": \"kp_enter\" } \] } }\r"
+
+expect eof

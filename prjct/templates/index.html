@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neco launcher</title>
+    <style>
+        body {
+            background-color: #99cece;
+        }
+        .block {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .left {
+            height: 150px;
+            width: 150px;
+            background-image: url({{ url_for('static', filename='images/Drip.jpg') }});
+            background-size: cover;
+        }
+        .middle {
+            display: flex;
+            width: 410px;
+            justify-content: space-around;
+            align-self: center;
+            border: 1px solid black;
+            border-radius: 17px;
+        }
+        .middle p {
+            cursor: pointer;
+        }
+        .right {
+            height: 150px;
+            width: 150px;
+            background-image: url({{ url_for('static', filename='images/Drip.jpg') }});
+            background-size: cover;
+        }
+        .button-10 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 6px 14px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+        border-radius: 6px;
+        border: none;
+
+        color: #fff;
+        background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+        background-origin: border-box;
+        box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        }
+
+        .button-10:focus {
+        box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+        outline: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="block">
+        <div class="left"></div>
+        <div class="middle">
+        <p class="button-10"><a href="http://localhost:8888/run-script?arg=win1">Windows 1.02</a></p>
+        <p class="button-10"><a href="http://localhost:8888/run-script?arg=win2">Windows 2.03</a></p>
+        <p class="button-10"><a href="http://localhost:8888/run-script?arg=win3">Windows 3.1</a></p>
+        </div>
+        <div class="right"></div>
+    </div>
+            {% set lines = message.split('-') %}
+    <p><a href="{{ lines[0] }}">{{ lines[0] }}</a></p>
+    <p>{{ lines[1] }}<span style="color:green;">{{ lines[2] }}</span></p>
+    <p>{{ lines[3] }}</p>
+</body>
+</html>
