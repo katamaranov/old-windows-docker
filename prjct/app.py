@@ -16,12 +16,15 @@ def index():
 @app.route('/run-script', methods=['GET'])
 def run_script():
     arg = request.args.get('arg')
-    process = subprocess.Popen(['/script.sh', arg], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout = process.communicate()
+
+    subprocess.Popen(['/script.sh', arg])
+
     if arg == 'win1':
         time.sleep(2)
-        result = subprocess.Popen(['/dos-auto.exp'], text=True)
-    session['ready'] = 'http://localhost:5335-currently running: -{arg}-after you click on novnc, do not press anything on the keyboard, the system will start itself in a few seconds, especially windows 1, you need to wait about 5 seconds'.format(arg=arg)
+        result = subprocess.Popen(['bash', '-c', 'exec /dos-auto.exp'], text=True) 
+        result.communicate()
+        result.terminate()
+    session['ready'] = 'http://localhost:5335-currently running: -{arg}-after you click on novnc, do not press anything on the keyboard, the system will start itself in a few seconds, especially windows 1, you need to wait about 22-23 seconds'.format(arg=arg)
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
