@@ -9,7 +9,7 @@ win_dirs=(
     [win2]="/opt/win2"
     [win3]="/opt/win3"
 )
-num=$(echo "$WINARG" | grep -o '[0-9]+')
+num=${WINARG: -1}
 target_dir="${win_dirs[$WINARG]}"
 
     if [ -z "$(ls -A $target_dir)" ]; then
