@@ -24,7 +24,7 @@ def run_script():
         result = subprocess.Popen(['bash', '-c', 'exec /dos-auto.exp'], text=True) 
         result.communicate()
         result.terminate()
-    session['ready'] = 'http://localhost:5335-currently running: -{arg}-after you click on novnc, do not press anything on the keyboard, the system will start itself in a few seconds, especially windows 1, you need to wait about 22~28 seconds'.format(arg=arg)
+    session['ready'] = 'http://localhost:5335-currently running: -{arg}-after you click on novnc, do not press anything on the keyboard, the system will start itself in a few seconds, especially windows 1, you need to wait about 15~20 seconds'.format(arg=arg)
     return redirect(url_for('index'))
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8888, debug=True)

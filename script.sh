@@ -9,6 +9,7 @@ win_dirs=(
     [win2]="/opt/win2"
     [win3]="/opt/win3"
 )
+num=$(echo "$WINARG" | grep -o '[0-9]+')
 target_dir="${win_dirs[$WINARG]}"
 
     if [ -z "$(ls -A $target_dir)" ]; then
@@ -19,44 +20,18 @@ target_dir="${win_dirs[$WINARG]}"
         if ps aux | grep -w "supervisord" > /dev/null; then
             pkill -f /usr/bin/supervisord	    
             sleep 1
-            if [ "$WINARG" == "win1" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-1.conf
-	    elif [ "$WINARG" == "win2" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-2.conf
-	    elif [ "$WINARG" == "win3" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-3.conf
-	    fi
+            /usr/bin/supervisord -c "/etc/supervisord-$num.conf"
     	else
-             if [ "$WINARG" == "win1" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-1.conf
-	    elif [ "$WINARG" == "win2" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-2.conf
-	    elif [ "$WINARG" == "win3" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-3.conf
-	    fi
-
+             /usr/bin/supervisord -c "/etc/supervisord-$num.conf"
         fi
         
     else
         if ps aux | grep -w "supervisord" > /dev/null; then
             pkill -f /usr/bin/supervisord 
    	    sleep 1
-             if [ "$WINARG" == "win1" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-1.conf
-	    elif [ "$WINARG" == "win2" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-2.conf
-	    elif [ "$WINARG" == "win3" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-3.conf
-	    fi
+             /usr/bin/supervisord -c "/etc/supervisord-$num.conf"
 
         else
-             if [ "$WINARG" == "win1" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-1.conf
-	    elif [ "$WINARG" == "win2" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-2.conf
-	    elif [ "$WINARG" == "win3" ]; then
-		    /usr/bin/supervisord -c /etc/supervisord-3.conf
-	    fi
-
+             /usr/bin/supervisord -c "/etc/supervisord-$num.conf"
         fi
     fi
